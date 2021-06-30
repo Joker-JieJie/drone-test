@@ -6,7 +6,7 @@ steps:
     commands:
       - mvn clean package
     when:
-      branch: master
+      branch: main
       event: [ push ]
   - name: docker
       image: plugins/docker
@@ -16,5 +16,5 @@ steps:
         repo: /drone-test/test1
         tags: latest
     when:
-      branch: master
+      branch: main
       event: [ push ]
