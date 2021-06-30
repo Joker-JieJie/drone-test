@@ -1,0 +1,20 @@
+kind: pipeline
+name: default
+steps:
+  - name: build
+    image: maven:3.6.2-jdk-8
+    commands:
+      - mvn clean package
+    when:
+      branch: master
+      event: [ push ]
+  - name: docker
+      image: plugins/docker
+      settings:
+        registry: http://1.15.148.163:18080
+        insecure: true
+        repo: /drone-test/test1
+        tags: latest
+    when:
+      branch: master
+      event: [ push ]
